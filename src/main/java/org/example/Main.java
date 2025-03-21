@@ -41,12 +41,19 @@ public class Main {
                         System.out.println("올바른 번호가 아닙니다.");
                     }
                 }
-                app.삭제(sc.nextInt());
-                sc.nextLine();
             } else if (word.equals("수정")) {
-
-                System.out.print("수정할 motivation의 번호를 입력하시오: ");
-                int num = sc.nextInt();
+                int num;
+                while(true){
+                    System.out.print("수정할 motivation의 번호를 입력하시오: ");
+                    try{
+                        num = sc.nextInt();
+                        sc.nextLine();
+                        break;
+                    }catch (Exception e){
+                        sc.nextLine();
+                        System.out.println("올바른 번호가 아닙니다.");
+                    }
+                }
                 System.out.print("수정할 source 내용을 입력하시오: ");
                 String source2 = sc.next();
                 System.out.print("수정할 motivation 내용을 입력하시오: ");
