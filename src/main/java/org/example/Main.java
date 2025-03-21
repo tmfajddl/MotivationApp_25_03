@@ -18,15 +18,15 @@ public class Main {
                 break; //무한루프 탈출
             // 명령어가 "등록"이면
             else if (word.equals("등록")) {
-                System.out.print("motivation :"); // motivation과 source 각각 입력
-                String motivation = sc.nextLine();
                 System.out.print("source :");
                 String source = sc.nextLine();
+                System.out.print("motivation :"); // motivation과 source 각각 입력
+                String motivation = sc.nextLine();
                 app.등록(motivation, source); //app의 등록 메서드 실행
             //명령어가 "목록"이면
             } else if (word.equals("목록")) {
-                System.out.println("===============================");
-                System.out.println(" 번호  /      source      /      motivation      ");
+                System.out.println("==================================================");
+                System.out.println(" 번호 /         source         /      motivation ");
                 //등록된 것이 하나라도 존재한다면 목록 리스팅
                 if (app.내용들.size() > 0) {
                     // 목록은 최근것부터 나중것까지 네용들의 배열만큼
@@ -36,7 +36,7 @@ public class Main {
                 } else
                     System.out.println("등록된 내용이 없습니다.");
 
-                System.out.println("===============================");
+                System.out.println("==================================================");
             //명령어가 "삭제"이면
             } else if (word.equals("삭제")) {
                 //번호에 맞는 타입이 들어올때까지 반복
@@ -100,7 +100,10 @@ class APP {
     }
 
     void 목록(int id) {
-        System.out.printf(" %d  /     %s     /      %s     \n", 내용들.get(id).ID, 내용들.get(id).source, 내용들.get(id).motivation);
+        if(내용들.get(id).source.length() > 7 || 내용들.get(id).motivation.length() > 4)
+            System.out.printf("  %d   /       %s       /      %s\n", 내용들.get(id).ID, 내용들.get(id).source.substring(0,4)+ "...", 내용들.get(id).motivation.substring(0,5)+ "...");
+        else
+            System.out.printf("  %d   /          %s          /      %s\n", 내용들.get(id).ID, 내용들.get(id).source, 내용들.get(id).motivation);
     }
 
     void 수정(int id, String source2, String motivation2) {
